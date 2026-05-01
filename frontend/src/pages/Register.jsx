@@ -3,8 +3,6 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { registerUser } from "../api/auth.api";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -14,15 +12,13 @@ const Register = () => {
     reset,
     formState: { errors },
   } = useForm({ mode: "onTouched" });
-  const { setIsLoggedIn } = useContext(AuthContext);
   const onSubmit = async (data) => {
     try {
       const res = await registerUser(data);
       console.log(res);
 
-      toast.success("Account created successfully");
-      navigate("/upload");
-      setIsLoggedIn(true);
+      toast.success("Account created successfully! Please log in to continue.");
+      navigate("/login");
       reset();
     } catch (error) {
       toast.error(error.response?.data?.message || "Registration failed. Please try again.");

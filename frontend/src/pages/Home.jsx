@@ -1,9 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import { useContext } from "react";
 
 const Home = () => {
   const navigate = useNavigate();
 
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
   return (
     <div className="min-h-screen bg-gray-100 px-6 py-10">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10">
@@ -20,7 +23,10 @@ const Home = () => {
           </p>
 
           <div className="flex gap-4">
-            <button
+            {
+              isLoggedIn ? null : (
+                <>
+                 <button
               onClick={() => navigate("/register")}
               className="cursor-pointer bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700"
             >
@@ -33,6 +39,9 @@ const Home = () => {
             >
               Login
             </button>
+                </>
+              )
+            }
           </div>
         </div>
 
@@ -121,12 +130,14 @@ const Home = () => {
               Join thousands of users generating captions with AI.
             </p>
 
-            <button
+            {
+              isLoggedIn ? null : (<button
               onClick={() => navigate("/register")}
               className="cursor-pointer bg-white text-purple-700 px-6 py-2 rounded-lg font-semibold hover:bg-gray-200"
             >
               Get Started
-            </button>
+            </button>)
+            }
           </div>
 
           {/* RIGHT */}
