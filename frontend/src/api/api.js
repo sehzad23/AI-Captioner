@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:8000/api",
+  baseURL: "https://ai-captioner-yzqx.onrender.com/api",
   withCredentials: true, // 🔥 cookie ke liye
   // headers: {
   //   "Content-Type": "application/json",

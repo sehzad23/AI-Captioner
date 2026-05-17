@@ -7,9 +7,11 @@ const cors = require("cors")
 const app = express()
 
 app.use(cors({
-  origin: "http://localhost:5173",
-  credentials: true
-}));
+  origin: [
+    "http://localhost:5173",
+    "https://ai-caption-generation.vercel.app"
+  ]
+}))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookie_parser())
