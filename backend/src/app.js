@@ -7,14 +7,19 @@ const cors = require("cors")
 const app = express()
 
 // Allow specific origins (supports comma-separated env var)
-// const allowedOrigins = (process.env.ALLOWED_ORIGINS || "http://localhost:5173,https://ai-rady-caption.vercel.app").split(",").map(s => s.trim())
+const allowedOrigins = (process.env.ALLOWED_ORIGINS || "http://localhost:5173,https://ai-rady-caption.vercel.app").split(",").map(s => s.trim())
 
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://ai-rady-caption.vercel.app"
-  ],
-  credentials: true
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true)
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      return callback(null, true)
+    }
+    return callback(new Error("CORS policy: Origin not allowed"))
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))

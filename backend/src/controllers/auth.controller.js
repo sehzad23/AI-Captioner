@@ -23,7 +23,11 @@ async function register_controller(req,res){
    })
 
    const token = jwt.sign({id:newuser._id},process.env.jwt_secrate_key)
-   res.cookie("token",token)
+   res.cookie("token", token, {
+     httpOnly: true,
+     secure: process.env.NODE_ENV === "production",
+     sameSite: "none",
+   })
 
    res.status(201).json({
     message: "User Register succusefully",
@@ -56,7 +60,11 @@ async function login_controller(req,res){
 
 
     const token = jwt.sign({id:isuseresxist._id},process.env.jwt_secrate_key)
-     res.cookie("token",token)
+     res.cookie("token", token, {
+       httpOnly: true,
+       secure: process.env.NODE_ENV === "production",
+       sameSite: "none",
+     })
 
      res.status(200).json({
         message: "User Loged in Succesfully",
@@ -68,7 +76,11 @@ async function login_controller(req,res){
 // Logout API
 
 async function logout_controller(req,res) {
-      res.clearCookie("token")
+      res.clearCookie("token", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "none",
+      })
 
       res.status(200).json({
         message: "Logged out successfully"
@@ -104,7 +116,8 @@ async function delete_controller(req, res) {
     // logout bhi kar dena (cookie clear)
     res.clearCookie("token", {
       httpOnly: true,
-      secure: false,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "none",
     });
 
     res.status(200).json({
