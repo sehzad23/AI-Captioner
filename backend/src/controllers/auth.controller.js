@@ -25,7 +25,7 @@ async function register_controller(req,res){
    const token = jwt.sign({id:newuser._id},process.env.jwt_secrate_key)
    res.cookie("token", token, {
      httpOnly: true,
-     secure: process.env.NODE_ENV === "production",
+     secure: true,
      sameSite: "none",
    })
 
