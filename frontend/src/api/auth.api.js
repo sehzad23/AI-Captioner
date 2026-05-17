@@ -6,20 +6,20 @@ export const registerUser = async (data) => {
 };
 
 export const loginUser = async (data) => {
-  const res = await api.post("/api/auth/login", data);
+  const res = await api.post("/auth/login", data);
   return res.data;
 };
 
 export const logoutUser = async () => {
-  return api("/api/auth/logout", {
+  return api("/auth/logout", {
     method: "GET",
   });
 };
 
 export const deleteUser = () => {
-  return api("/api/auth/delete", {
+  return api("/auth/delete", {
     method: "DELETE",
   });
 };
 
-export const getMe = () => api("/api/auth/me");
+export const getMe = () => api("/auth/me");
