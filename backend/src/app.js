@@ -10,18 +10,12 @@ const app = express()
 const allowedOrigins = (process.env.ALLOWED_ORIGINS || "http://localhost:5173,https://ai-rady-caption.vercel.app").split(",").map(s => s.trim())
 
 app.use(cors({
-  origin: function (origin, callback) {
-    // allow requests with no origin (like mobile apps or curl)
-    if (!origin) return callback(null, true)
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      return callback(null, true)
-    }
-    return callback(new Error("CORS policy: Origin not allowed"))
-  },
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"]
-}))
+  origin: [
+    "http://localhost:5173",
+    "https://ai-rady-caption.vercel.app"
+  ],
+  credentials: true
+}));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookie_parser())
