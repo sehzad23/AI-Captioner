@@ -56,13 +56,12 @@ const Home = () => {
           <div className=" w-full rounded-xl border border-gray-300 mt-3">
             <div className="flex justify-between px-5  mt-5">
               <h5 className="font-bold uppercase text-[12px] text-purple-600">
-                Sugessted Caption
+                Suggested Caption
               </h5>
-              <h5 className="font-bold  text-[12px]">98.4% Confidance</h5>
+              <h5 className="font-bold  text-[12px]">98.4% Confidence</h5>
             </div>
             <p className="px-5 italic mb-2 mt-2">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
-              ipsam pariatur perspiciatis unde saepe. Obcaecati?
+              The intersection of human creativity and artificial intelligence creates a new dawn for digital storytelling.
             </p>
           </div>
         </div>

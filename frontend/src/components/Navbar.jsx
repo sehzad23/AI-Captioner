@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import Profile from "../pages/Profile";
+import upload from "../pages/Upload";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -38,6 +39,15 @@ const Navbar = () => {
             >
               <i className="ri-user-add-fill"></i>
             </div>
+               
+               {/* // Upload page link */}
+            <div
+              onClick={() => navigate("/upload")}
+              className="text-white text-xl px-2 py-1 cursor-pointer active:bg-purple-700 rounded-md"
+            > 
+            <span>Upload</span>
+            </div>
+
 
             <button
               onClick={handleLogout}
