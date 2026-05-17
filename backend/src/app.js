@@ -7,7 +7,7 @@ const cors = require("cors")
 const app = express()
 
 // Allow specific origins (supports comma-separated env var)
-const allowedOrigins = (process.env.ALLOWED_ORIGINS || "http://localhost:5173,https://ai-rady-caption.vercel.app").split(",").map(s => s.trim())
+// const allowedOrigins = (process.env.ALLOWED_ORIGINS || "http://localhost:5173,https://ai-rady-caption.vercel.app").split(",").map(s => s.trim())
 
 app.use(cors({
   origin: [
