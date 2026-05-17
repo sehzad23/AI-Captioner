@@ -6,10 +6,21 @@ const cors = require("cors")
 
 const app = express()
 
+// Allow specific origins (supports comma-separated env var)
+const allowedOrigins = (process.env.ALLOWED_ORIGINS || "http://localhost:5173,https://ai-captioner-pink.vercel.app").split(",").map(s => s.trim())
+
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-  ]
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps or curl)
+    if (!origin) return callback(null, true)
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      return callback(null, true)
+    }
+    return callback(new Error("CORS policy: Origin not allowed"))
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
