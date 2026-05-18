@@ -99,6 +99,15 @@ const Navbar = () => {
                 <i className="ri-user-add-fill"></i>
               </div>
 
+                 
+               {/* // Upload page link */}
+            <div
+              onClick={() => navigate("/upload")}
+              className="text-white text-xl px-2 py-1 cursor-pointer active:bg-purple-700 rounded-md"
+            > 
+            <span>Upload</span>
+            </div>
+
               <button
                 onClick={() => {
                   handleLogout();
