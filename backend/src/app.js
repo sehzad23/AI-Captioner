@@ -9,10 +9,23 @@ const app = express()
 // Allow specific origins (supports comma-separated env var)
 // const allowedOrigins = (process.env.ALLOWED_ORIGINS || "http://localhost:5173,https://ai-rady-caption.vercel.app").split(",").map(s => s.trim())
 
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://ai-rady-caption.vercel.app",
+];
+
 app.use(cors({
-  origin: "https://ai-rady-caption.vercel.app",
-  credentials: true
-}))
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+}));
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookie_parser())
