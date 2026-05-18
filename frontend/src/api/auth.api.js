@@ -11,6 +11,8 @@ export const loginUser = async (data) => {
 };
 
 export const logoutUser = async () => {
+  localStorage.removeItem("token");
+  localStorage.removeItem("isLoggedIn");
   return api("/auth/logout", {
     method: "GET",
   });

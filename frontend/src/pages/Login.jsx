@@ -21,6 +21,7 @@ const Login = () => {
     try {
       const res = await loginUser(data);
       console.log(res);
+      localStorage.setItem("token", res.token);
 
       toast.success("Logged in successfully");
       localStorage.setItem("isLoggedIn", "true");
