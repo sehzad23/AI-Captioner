@@ -62,7 +62,7 @@ async function login_controller(req,res){
     const token = jwt.sign({id:isuseresxist._id},process.env.jwt_secrate_key)
      res.cookie("token", token, {
        httpOnly: true,
-       secure: process.env.NODE_ENV === "production",
+       secure: true,
        sameSite: "none",
      })
 
@@ -78,7 +78,7 @@ async function login_controller(req,res){
 async function logout_controller(req,res) {
       res.clearCookie("token", {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
+        secure: true,
         sameSite: "none",
       })
 
@@ -116,7 +116,7 @@ async function delete_controller(req, res) {
     // logout bhi kar dena (cookie clear)
     res.clearCookie("token", {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: true,
       sameSite: "none",
     });
 
