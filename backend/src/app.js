@@ -24,6 +24,14 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookie_parser())
 
+app.get("/test-auth", (req, res) => {
+  res.json({
+    cookies: req.cookies,
+    token: req.cookies.token || null,
+    rawCookie: req.headers.cookie || null,
+  });
+});
+
 app.use("/api/auth", authRoute)
 app.use("/api/posts", postRoute)
 
